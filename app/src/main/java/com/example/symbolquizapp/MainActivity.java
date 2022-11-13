@@ -2,6 +2,7 @@ package com.example.symbolquizapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -64,11 +65,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
     void loadNewQuestion(){
-
+        if(currentQuestionIndex==totalQuestion){
+            finishQuiz();
+            return;
+        }
         questionTextView.setText(QuestionAnswer.question[currentQuestionIndex]);
         ansA.setText(QuestionAnswer.choices[currentQuestionIndex][0]);
         ansB.setText(QuestionAnswer.choices[currentQuestionIndex][1]);
         ansC.setText(QuestionAnswer.choices[currentQuestionIndex][2]);
         ansD.setText(QuestionAnswer.choices[currentQuestionIndex][3]);
+    }
+    void finishQuiz(){
+        String passStatus="";
+        if(score>totalQuestion*0.60){
+            passStatus="passed";
+        }else{
+            passStatus="Fail";
+        }
+        new AlertDialog.Builder(this)
+                .setTitle(passStatus)
+                .setMessage("Score is" +score+"out of"+ totalQuestion)
+                .setPositiveButton("Restart",((dialogInterface, i) -> restartQuiz()))
+                .setCancelable(false)
+                .show();
+
     }
 }
