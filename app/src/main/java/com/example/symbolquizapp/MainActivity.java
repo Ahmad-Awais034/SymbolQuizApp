@@ -3,10 +3,11 @@ package com.example.symbolquizapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     TextView totalQuestionsTextView;
     TextView questionTextView;
     Button ansA,ansB,ansC,ansD;
@@ -23,5 +24,16 @@ public class MainActivity extends AppCompatActivity {
         ansC=findViewById(R.id.ans_c);
         ansD=findViewById(R.id.ans_d);
         submitBtn=findViewById(R.id.submit_btn);
+
+        ansA.setOnClickListener(this);
+        ansB.setOnClickListener(this);
+        ansC.setOnClickListener(this);
+        ansD.setOnClickListener(this);
+        submitBtn.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 }
