@@ -13,6 +13,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button ansA,ansB,ansC,ansD;
     Button submitBtn;
 
+    int score=0;
+    int totalQuestion=QuestionAnswer.question.length;
+    int currentQuestionIndex=0;
+    String selectedAnswer="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,10 +35,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ansC.setOnClickListener(this);
         ansD.setOnClickListener(this);
         submitBtn.setOnClickListener(this);
+
+        totalQuestionsTextView.setText("Total Questions: "+totalQuestion);
+        loadNewQuestion();
     }
 
     @Override
     public void onClick(View view) {
 
+    }
+    void loadNewQuestion(){
+
+        questionTextView.setText(QuestionAnswer.question[currentQuestionIndex]);
+        ansA.setText(QuestionAnswer.choices[currentQuestionIndex][0]);
+        ansB.setText(QuestionAnswer.choices[currentQuestionIndex][1]);
+        ansC.setText(QuestionAnswer.choices[currentQuestionIndex][2]);
+        ansD.setText(QuestionAnswer.choices[currentQuestionIndex][3]);
     }
 }
